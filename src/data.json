@@ -1,0 +1,63 @@
+[
+  {
+    "id": 1,
+    "firstName": "Nicolas",
+    "lastName": "Huggins",
+    "cifNumber": "5FP8TP5DH47",
+    "isPremium": true
+  },
+  {
+    "id": 2,
+    "firstName": "Kennan",
+    "lastName": "Lambdin",
+    "cifNumber": "4XU6UN1XF61"
+  },
+  {
+    "id": 3,
+    "firstName": "Kathe",
+    "lastName": "Dysert",
+    "cifNumber": "1FE4QX5JE43"
+  },
+  {
+    "id": 4,
+    "firstName": "Earvin",
+    "lastName": "Shackleford",
+    "cifNumber": "1DQ7W69KK51"
+  },
+  {
+    "id": 5,
+    "firstName": "Knox",
+    "lastName": "Constable",
+    "cifNumber": "2NE7A29KE16"
+  },
+  {
+    "id": 6,
+    "firstName": "Rozina",
+    "lastName": "Graham",
+    "cifNumber": "6J03WP9AQ40"
+  },
+  {
+    "id": 7,
+    "firstName": "Yardley",
+    "lastName": "Redemile",
+    "cifNumber": "5RX2X01AY92"
+  },
+  {
+    "id": 8,
+    "firstName": "Riordan",
+    "lastName": "Hawkswell",
+    "cifNumber": "5J76W21VH17"
+  },
+  {
+    "id": 9,
+    "firstName": "Nester",
+    "lastName": "Ilchenko",
+    "cifNumber": "5GF4JR6FF92"
+  },
+  {
+    "id": 10,
+    "firstName": "Andria",
+    "lastName": "Albert",
+    "cifNumber": "3Y55RY3DQ51"
+  }
+]
