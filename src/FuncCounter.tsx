@@ -28,7 +28,7 @@ const FuncCounter: React.FunctionComponent<FuncCounterProps> = (
     };
   }, []);
 
-  return (
+  const reactElement = (
     <>
       <h5>Function Counter: {counter}</h5>
       <button className='btn btn-primary me-4' onClick={increment}>
@@ -36,6 +36,10 @@ const FuncCounter: React.FunctionComponent<FuncCounterProps> = (
       </button>
     </>
   );
+
+  console.log('Rendered', reactElement);
+
+  return reactElement;
 };
 
 export default FuncCounter;

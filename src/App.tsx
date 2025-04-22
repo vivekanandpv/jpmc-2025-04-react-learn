@@ -29,10 +29,10 @@ const App: React.FunctionComponent<AppProps> = (props: AppProps) => {
     <>
       <div className='p-5'>
         <h2>Customer Management System</h2>
-        <button className='btn btn-warning' onClick={toggle}>
+        {/* <button className='btn btn-warning' onClick={toggle}>
           Toggle Counter
         </button>
-        <hr />
+        <hr /> */}
 
         {/* {customers.map((c) => (
           <AlertStyledCustomer
@@ -41,11 +41,13 @@ const App: React.FunctionComponent<AppProps> = (props: AppProps) => {
             onSelect={handleSelect}
           />
         ))} */}
-
+        {/* 
         <AppThemeProvider>
           <Sample />
           <Demo2Fn />
-        </AppThemeProvider>
+        </AppThemeProvider> */}
+
+        <FuncCounter />
       </div>
     </>
   );
