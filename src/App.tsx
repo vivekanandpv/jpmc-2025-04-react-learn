@@ -3,6 +3,8 @@ import Customer, { CustomerInformation } from './Customer';
 import data from './data.json';
 import ClassCounter from './ClassCounter';
 import FuncCounter from './FuncCounter';
+import WithAlertStyle from './Hoc';
+import Sample from './Sample';
 
 interface AppProps {}
 
@@ -14,6 +16,12 @@ const App: React.FunctionComponent<AppProps> = (props: AppProps) => {
   };
 
   const [visible, setVisible] = React.useState<boolean>(true);
+
+  const AlertStyledCounter = WithAlertStyle(FuncCounter);
+
+  const AlertStyledSample = WithAlertStyle(Sample);
+
+  const AlertStyledCustomer = WithAlertStyle(Customer);
 
   return (
     <>
@@ -27,11 +35,18 @@ const App: React.FunctionComponent<AppProps> = (props: AppProps) => {
         </button>
         <hr />
 
-        {/* {customers.map((c) => (
-          <Customer customer={c} key={c.cifNumber} onSelect={handleSelect} />
-        ))} */}
+        {customers.map((c) => (
+          <AlertStyledCustomer
+            customer={c}
+            key={c.cifNumber}
+            onSelect={handleSelect}
+          />
+        ))}
 
-        {visible ? <FuncCounter /> : null}
+        {/* {visible ? <AlertStyledCounter /> : null} */}
+        {/* {visible ? <FuncCounter /> : null} */}
+
+        {/* <AlertStyledSample /> */}
       </div>
     </>
   );
