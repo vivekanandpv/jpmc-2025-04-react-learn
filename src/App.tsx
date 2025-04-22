@@ -5,6 +5,8 @@ import ClassCounter from './ClassCounter';
 import FuncCounter from './FuncCounter';
 import WithAlertStyle from './Hoc';
 import Sample from './Sample';
+import { AppThemeProvider } from './AppTheme';
+import Demo2Fn from './Demo2Fn';
 
 interface AppProps {}
 
@@ -40,8 +42,10 @@ const App: React.FunctionComponent<AppProps> = (props: AppProps) => {
           />
         ))} */}
 
-        {/* <Sample /> */}
-        {visible ? <FuncCounter /> : null}
+        <AppThemeProvider>
+          <Sample />
+          <Demo2Fn />
+        </AppThemeProvider>
       </div>
     </>
   );
