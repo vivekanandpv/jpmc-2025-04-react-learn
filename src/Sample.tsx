@@ -1,70 +1,46 @@
-import React, { useReducer } from 'react';
-
-//  reducer is a pure function
-//  https://en.wikipedia.org/wiki/Pure_function
-
-//  action tells the reducer about the change to be applied
-//  action usually has the structure: {type: 'actionType', payload: ...}
-const sampleReducer = (state: any, action: any) => {
-  switch (action.type) {
-    case 'updateFirstName': {
-      //    using the spread operator for cloning
-      //    this is not a recommended approach
-      //    consider using immer.js
-      const newState = { ...state };
-      newState.firstName = action.payload; //  updating the cloned state, not the original
-      return newState;
-    }
-    case 'updateLastName': {
-      const newState = { ...state };
-      newState.lastName = action.payload;
-      return newState;
-    }
-    //    if the action type is not supported in the reducer
-    //    return the old state
-    default:
-      return state;
-  }
-};
+import React, { useEffect, useMemo, useState } from 'react';
 
 const Sample = () => {
-  const initialState = {
-    firstName: 'Raman',
-    lastName: 'K V',
+  const [index, setIndex] = useState(0);
+  const [conversionFactor, setConversionFactor] = useState(1);
+
+  const increment = () => {
+    console.log('increment is executing');
+    setIndex((v) => v + 1);
   };
 
-  const [state, dispatch] = useReducer(sampleReducer, initialState);
+  useEffect(() => {
+    console.log('useEffect');
+    setConversionFactor((v) => {
+      if (index < 10) {
+        return 1;
+      } else {
+        return 2;
+      }
+    });
+  }, [index]);
 
-  const changeFirstName = () => {
-    const action = {
-      type: 'updateFirstName',
-      payload: 'Rajendra',
-    };
-    dispatch(action);
+  const expensiveFunction = (i) => {
+    console.log('expensiveFunction is executing');
+    return i * i * i;
   };
 
-  const changeLastName = () => {
-    const action = {
-      type: 'updateLastName',
-      payload: 'Kumar',
-    };
-    dispatch(action);
-  };
+  const memoizedValue = useMemo(
+    () => expensiveFunction(conversionFactor),
+    [conversionFactor]
+  );
+
+  //  If it is not memoized, then the expensiveFunction keeps on executing...
+  //  const nonMemoizedValue = expensiveFunction(conversionFactor);
 
   return (
     <>
-      <h3>Sample Component</h3>
+      <h3>
+        Sample Component: Index: {index}; Cube: {memoizedValue}
+      </h3>
       <hr />
-      <p>
-        First Name: {state.firstName}; Last Name: {state.lastName}
-      </p>
 
-      <button className='btn btn-primary me-3' onClick={changeFirstName}>
-        Change First Name
-      </button>
-      <button className='btn btn-primary me-3' onClick={changeLastName}>
-        Change Last Name
-      </button>
+      <button onClick={increment}>Increment</button>
     </>
   );
 };
