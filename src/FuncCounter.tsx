@@ -2,14 +2,19 @@ import * as React from 'react';
 
 interface FuncCounterProps {}
 
+const useCounter = (
+  initialValue: number,
+  incrementFactor: number
+): [number, () => void] => {
+  const [counter, setCounter] = React.useState<number>(initialValue);
+
+  return [counter, () => setCounter((c) => c + incrementFactor)];
+};
+
 const FuncCounter: React.FunctionComponent<FuncCounterProps> = (
   props: FuncCounterProps
 ) => {
-  const [counter, setCounter] = React.useState<number>(0);
-
-  const increment = () => {
-    setCounter((s) => s + 1);
-  };
+  const [counter, increment] = useCounter(0, 2);
 
   React.useEffect(() => {
     console.log('counter updated');
