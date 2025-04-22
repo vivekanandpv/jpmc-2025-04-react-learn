@@ -17,12 +17,6 @@ const App: React.FunctionComponent<AppProps> = (props: AppProps) => {
 
   const [visible, setVisible] = React.useState<boolean>(true);
 
-  const AlertStyledCounter = WithAlertStyle(FuncCounter);
-
-  const AlertStyledSample = WithAlertStyle(Sample);
-
-  const AlertStyledCustomer = WithAlertStyle(Customer);
-
   return (
     <>
       <div className='p-5'>
@@ -35,18 +29,15 @@ const App: React.FunctionComponent<AppProps> = (props: AppProps) => {
         </button>
         <hr />
 
-        {customers.map((c) => (
+        {/* {customers.map((c) => (
           <AlertStyledCustomer
             customer={c}
             key={c.cifNumber}
             onSelect={handleSelect}
           />
-        ))}
+        ))} */}
 
-        {/* {visible ? <AlertStyledCounter /> : null} */}
-        {/* {visible ? <FuncCounter /> : null} */}
-
-        {/* <AlertStyledSample /> */}
+        <Sample />
       </div>
     </>
   );

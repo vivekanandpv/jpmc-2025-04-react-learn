@@ -1,17 +1,70 @@
-import * as React from 'react';
+import React, { useReducer } from 'react';
 
-interface SampleProps {}
+//  reducer is a pure function
+//  https://en.wikipedia.org/wiki/Pure_function
 
-const Sample: React.FunctionComponent<SampleProps> = (props: SampleProps) => {
+//  action tells the reducer about the change to be applied
+//  action usually has the structure: {type: 'actionType', payload: ...}
+const sampleReducer = (state: any, action: any) => {
+  switch (action.type) {
+    case 'updateFirstName': {
+      //    using the spread operator for cloning
+      //    this is not a recommended approach
+      //    consider using immer.js
+      const newState = { ...state };
+      newState.firstName = action.payload; //  updating the cloned state, not the original
+      return newState;
+    }
+    case 'updateLastName': {
+      const newState = { ...state };
+      newState.lastName = action.payload;
+      return newState;
+    }
+    //    if the action type is not supported in the reducer
+    //    return the old state
+    default:
+      return state;
+  }
+};
+
+const Sample = () => {
+  const initialState = {
+    firstName: 'Raman',
+    lastName: 'K V',
+  };
+
+  const [state, dispatch] = useReducer(sampleReducer, initialState);
+
+  const changeFirstName = () => {
+    const action = {
+      type: 'updateFirstName',
+      payload: 'Rajendra',
+    };
+    dispatch(action);
+  };
+
+  const changeLastName = () => {
+    const action = {
+      type: 'updateLastName',
+      payload: 'Kumar',
+    };
+    dispatch(action);
+  };
+
   return (
     <>
-      <h3>Document Here</h3>
+      <h3>Sample Component</h3>
+      <hr />
       <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt
-        deleniti adipisci sequi, ducimus culpa modi corrupti voluptas vel.
-        Necessitatibus qui itaque atque sequi tempore quae minus deserunt
-        doloremque architecto modi?
+        First Name: {state.firstName}; Last Name: {state.lastName}
       </p>
+
+      <button className='btn btn-primary me-3' onClick={changeFirstName}>
+        Change First Name
+      </button>
+      <button className='btn btn-primary me-3' onClick={changeLastName}>
+        Change Last Name
+      </button>
     </>
   );
 };
