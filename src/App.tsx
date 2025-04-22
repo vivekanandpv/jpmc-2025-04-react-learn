@@ -8,6 +8,12 @@ import Sample from './Sample';
 
 interface AppProps {}
 
+const useToggle = (initialState: boolean): [boolean, () => void] => {
+  const [isOn, setIsOn] = React.useState(initialState);
+
+  return [isOn, () => setIsOn((s) => !s)];
+};
+
 const App: React.FunctionComponent<AppProps> = (props: AppProps) => {
   const customers: CustomerInformation[] = data;
 
@@ -15,16 +21,13 @@ const App: React.FunctionComponent<AppProps> = (props: AppProps) => {
     console.log('Selected', customer);
   };
 
-  const [visible, setVisible] = React.useState<boolean>(true);
+  const [visible, toggle] = useToggle(true);
 
   return (
     <>
       <div className='p-5'>
         <h2>Customer Management System</h2>
-        <button
-          className='btn btn-warning'
-          onClick={() => setVisible((v) => !v)}
-        >
+        <button className='btn btn-warning' onClick={toggle}>
           Toggle Counter
         </button>
         <hr />
@@ -37,7 +40,8 @@ const App: React.FunctionComponent<AppProps> = (props: AppProps) => {
           />
         ))} */}
 
-        <Sample />
+        {/* <Sample /> */}
+        {visible ? <FuncCounter /> : null}
       </div>
     </>
   );
