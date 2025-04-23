@@ -1,6 +1,7 @@
 import { useFormik } from 'formik';
 import * as React from 'react';
 import * as Yup from 'yup';
+import { useAppSelector } from './store/hooks';
 
 interface CustomerFormProps {}
 
@@ -39,8 +40,13 @@ const CustomerForm: React.FunctionComponent<CustomerFormProps> = (
     }),
   });
 
+  const user = useAppSelector((s) => s.user);
+
   return (
     <>
+      <p>Username: {user.username}</p>
+      <p>Token: {user.token}</p>
+      <hr />
       <form onSubmit={formikInstance.handleSubmit}>
         <div className='mb-3'>
           <label htmlFor='id' className='form-label'>

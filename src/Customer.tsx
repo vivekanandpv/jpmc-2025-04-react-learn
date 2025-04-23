@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { useAppDispatch } from './store/hooks';
+import { userSlice } from './store/user.slice';
 
 export interface CustomerInformation {
   firstName: string;
@@ -15,6 +17,8 @@ interface CustomerProps {
 const Customer: React.FunctionComponent<CustomerProps> = (
   props: CustomerProps
 ) => {
+  const dispatch = useAppDispatch();
+
   return (
     <>
       <div className='card mb-3' style={{ width: '18rem' }}>
@@ -35,9 +39,16 @@ const Customer: React.FunctionComponent<CustomerProps> = (
           </p>
           <button
             className='btn btn-primary'
-            onClick={() => props.onSelect(props.customer)}
+            onClick={() =>
+              dispatch(
+                userSlice.actions.login({
+                  username: props.customer.firstName,
+                  token: props.customer.cifNumber,
+                })
+              )
+            }
           >
-            Select
+            Login
           </button>
         </div>
       </div>
