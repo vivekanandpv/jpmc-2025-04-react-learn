@@ -5,7 +5,7 @@ import CustomerForm from './CustomerForm';
 
 interface AppProps {}
 
-const App: React.FunctionComponent<AppProps> = (props: AppProps) => {
+const App: React.FunctionComponent<AppProps> = () => {
   const customers: CustomerInformation[] = data;
 
   const handleSelect = (customer: CustomerInformation) => {

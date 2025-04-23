@@ -13,9 +13,7 @@ interface CustomerFormModel {
   isPremium: boolean;
 }
 
-const CustomerForm: React.FunctionComponent<CustomerFormProps> = (
-  props: CustomerFormProps
-) => {
+const CustomerForm: React.FunctionComponent<CustomerFormProps> = () => {
   const formikInstance = useFormik<CustomerFormModel>({
     initialValues: {
       id: '',

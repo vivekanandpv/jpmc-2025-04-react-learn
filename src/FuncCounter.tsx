@@ -11,9 +11,7 @@ const useCounter = (
   return [counter, () => setCounter((c) => c + incrementFactor)];
 };
 
-const FuncCounter: React.FunctionComponent<FuncCounterProps> = (
-  props: FuncCounterProps
-) => {
+const FuncCounter: React.FunctionComponent<FuncCounterProps> = () => {
   const [counter, increment] = useCounter(0, 2);
 
   React.useEffect(() => {
