@@ -17,6 +17,7 @@ const CustomerForm: React.FunctionComponent<CustomerFormProps> = (
 ) => {
   const formikInstance = useFormik<CustomerFormModel>({
     initialValues: {
+      id: 0,
       isPremium: false,
     },
     onSubmit: (formData) => {
