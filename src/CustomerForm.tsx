@@ -5,7 +5,7 @@ import * as Yup from 'yup';
 interface CustomerFormProps {}
 
 interface CustomerFormModel {
-  id?: number;
+  id?: number | string;
   firstName?: string;
   lastName?: string;
   cifNumber?: string;
@@ -17,7 +17,10 @@ const CustomerForm: React.FunctionComponent<CustomerFormProps> = (
 ) => {
   const formikInstance = useFormik<CustomerFormModel>({
     initialValues: {
-      id: 0,
+      id: '',
+      firstName: '',
+      lastName: '',
+      cifNumber: '',
       isPremium: false,
     },
     onSubmit: (formData) => {
