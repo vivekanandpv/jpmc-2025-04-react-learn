@@ -43,7 +43,7 @@ const CustomerForm: React.FunctionComponent<CustomerFormProps> = (
             Customer Id
           </label>
           <input
-            type='number'
+            type='text'
             className='form-control'
             id='id'
             aria-describedby='idHelp'
@@ -54,7 +54,7 @@ const CustomerForm: React.FunctionComponent<CustomerFormProps> = (
           />
           {formikInstance.touched.id && formikInstance.errors.id ? (
             <div id='idHelp' className='text-danger form-text'>
-              Customer id is required
+              {formikInstance.errors.id}
             </div>
           ) : null}
         </div>
@@ -67,7 +67,16 @@ const CustomerForm: React.FunctionComponent<CustomerFormProps> = (
             className='form-control'
             id='firstName'
             name='firstName'
+            value={formikInstance.values.firstName}
+            onChange={formikInstance.handleChange}
+            onBlur={formikInstance.handleBlur}
           />
+          {formikInstance.touched.firstName &&
+          formikInstance.errors.firstName ? (
+            <div id='idHelp' className='text-danger form-text'>
+              {formikInstance.errors.firstName}
+            </div>
+          ) : null}
         </div>
         <div className='mb-3'>
           <label htmlFor='lastName' className='form-label'>
@@ -78,7 +87,15 @@ const CustomerForm: React.FunctionComponent<CustomerFormProps> = (
             className='form-control'
             id='lastName'
             name='lastName'
+            value={formikInstance.values.lastName}
+            onChange={formikInstance.handleChange}
+            onBlur={formikInstance.handleBlur}
           />
+          {formikInstance.touched.lastName && formikInstance.errors.lastName ? (
+            <div id='idHelp' className='text-danger form-text'>
+              {formikInstance.errors.lastName}
+            </div>
+          ) : null}
         </div>
         <div className='mb-3'>
           <label htmlFor='cifNumber' className='form-label'>
@@ -89,7 +106,16 @@ const CustomerForm: React.FunctionComponent<CustomerFormProps> = (
             className='form-control'
             id='cifNumber'
             name='cifNumber'
+            value={formikInstance.values.cifNumber}
+            onChange={formikInstance.handleChange}
+            onBlur={formikInstance.handleBlur}
           />
+          {formikInstance.touched.cifNumber &&
+          formikInstance.errors.cifNumber ? (
+            <div id='idHelp' className='text-danger form-text'>
+              {formikInstance.errors.cifNumber}
+            </div>
+          ) : null}
         </div>
         <div className='mb-3 form-check'>
           <input
@@ -97,6 +123,9 @@ const CustomerForm: React.FunctionComponent<CustomerFormProps> = (
             className='form-check-input'
             id='isPremium'
             name='isPremium'
+            checked={formikInstance.values.isPremium}
+            onChange={formikInstance.handleChange}
+            onBlur={formikInstance.handleBlur}
           />
           <label className='form-check-label' htmlFor='isPremium'>
             Check me out
