@@ -7,6 +7,7 @@ import WithAlertStyle from './Hoc';
 import Sample from './Sample';
 import { AppThemeProvider } from './AppTheme';
 import Demo2Fn from './Demo2Fn';
+import CustomerForm from './CustomerForm';
 
 interface AppProps {}
 
@@ -35,11 +36,7 @@ const App: React.FunctionComponent<AppProps> = (props: AppProps) => {
         <hr /> */}
 
         {/* {customers.map((c) => (
-          <AlertStyledCustomer
-            customer={c}
-            key={c.cifNumber}
-            onSelect={handleSelect}
-          />
+          <Customer customer={c} key={c.cifNumber} onSelect={handleSelect} />
         ))} */}
         {/* 
         <AppThemeProvider>
@@ -47,7 +44,8 @@ const App: React.FunctionComponent<AppProps> = (props: AppProps) => {
           <Demo2Fn />
         </AppThemeProvider> */}
 
-        <FuncCounter />
+        {/* <FuncCounter /> */}
+        <CustomerForm />
       </div>
     </>
   );
