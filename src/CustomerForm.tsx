@@ -1,13 +1,43 @@
+import { useFormik } from 'formik';
 import * as React from 'react';
+import * as Yup from 'yup';
 
 interface CustomerFormProps {}
+
+interface CustomerFormModel {
+  id?: number;
+  firstName?: string;
+  lastName?: string;
+  cifNumber?: string;
+  isPremium: boolean;
+}
 
 const CustomerForm: React.FunctionComponent<CustomerFormProps> = (
   props: CustomerFormProps
 ) => {
+  const formikInstance = useFormik<CustomerFormModel>({
+    initialValues: {
+      isPremium: false,
+    },
+    onSubmit: (formData) => {
+      console.log('form submitted', formData);
+    },
+    validationSchema: Yup.object({
+      id: Yup.number().required('Id is required'),
+      firstName: Yup.string().required('First Name is required'),
+      lastName: Yup.string().required('Last Name is required'),
+      cifNumber: Yup.string()
+        .required('CIF Number is required')
+        .matches(
+          /^[0-9]{4}[A-Z]{3}[0-9]{4}$/,
+          'Should be of the pattern NNNNSSSNNNN'
+        ),
+    }),
+  });
+
   return (
     <>
-      <form>
+      <form onSubmit={formikInstance.handleSubmit}>
         <div className='mb-3'>
           <label htmlFor='id' className='form-label'>
             Customer Id
@@ -18,10 +48,15 @@ const CustomerForm: React.FunctionComponent<CustomerFormProps> = (
             id='id'
             aria-describedby='idHelp'
             name='id'
+            value={formikInstance.values.id}
+            onChange={formikInstance.handleChange}
+            onBlur={formikInstance.handleBlur}
           />
-          <div id='idHelp' className='form-text'>
-            We'll never share your email with anyone else.
-          </div>
+          {formikInstance.touched.id && formikInstance.errors.id ? (
+            <div id='idHelp' className='text-danger form-text'>
+              Customer id is required
+            </div>
+          ) : null}
         </div>
         <div className='mb-3'>
           <label htmlFor='firstName' className='form-label'>
